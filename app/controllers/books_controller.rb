@@ -96,6 +96,38 @@ class BooksController < ApplicationController
     complete_book_history(params[:id], session[:user_id], Time.zone.now)
   end
 
+  def send_email_to_requester(user, bookname)
+    Notifier.send_notification(user.email, user.name, book_name).deliver_now!
+  end
+
+  def complete_book_history(book_id, user_id, check_in_date)
+    @book_history = BookHistory.find_by(book_id: book_id, user_id: user_id, check_in_date: nil)
+    @book_history.check_in_date = check_in_date
+    @book_history.save
+  end
+
+  def request_book
+    @book = Book.find(params[:id])
+    @book.is_requested = true 
+    @book.requested_by = session[:user_id]
+    if @book.save!
+      render :show, status: :ok, location: @book 
+    else
+      render :show
+    end 
+  end 
+
+  def cancel_request
+    @book = Book.find(params[:id])
+    @book.is_requested = false
+    @book.requested_by = nil 
+    if @book.save
+      render :show, status: :ok, location: @book 
+    else
+      render :show
+    end
+  end 
+
   private
 
   def find_book
@@ -103,7 +135,7 @@ class BooksController < ApplicationController
   end 
 
   def book_params
-    params.require(:book).permit(:title, :description, :isbn, :is_borrowed, :is_deleted)
+    params.require(:book).permit(:title, :description, :author, :isbn, :is_borrowed, :is_deleted)
   end
 
 end

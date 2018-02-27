@@ -1,0 +1,11 @@
+<% if @current_user.is_admin %>
+<h1>Editing Book</h1>
+
+<%= render 'form_edit' %>
+
+<%= link_to 'Back', books_path, :class => "btn btn-primary", :style => "color: #ffffff" %>
+<%else%>
+<blockquote>
+	<p class="text-danger">You are not authorized to view this page!</p>
+</blockquote>
+<% end %>

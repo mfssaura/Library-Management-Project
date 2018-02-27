@@ -1,0 +1,9 @@
+<% if @current_user.is_admin? %>
+<h1>Edit Profile</h1>
+
+<%= render 'form_edit' %>
+<%else%>
+<blockquote>
+  <p class="text-danger">You are not authorized to view this page!</p>
+</blockquote>
+<% end %>

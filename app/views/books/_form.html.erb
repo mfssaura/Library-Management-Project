@@ -1,0 +1,24 @@
+<div class="container">
+  <%= form_for(@book) do |f| %>
+    <div class="field">
+      <%= f.label :title %><br>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+    <div class="field">
+      <%= f.label :description %><br>
+      <%= f.text_field :description, class: 'form-control'%>
+    </div>
+    <div class="field">
+      <%= f.label :author %><br>
+      <%= f.text_field :author, class: 'form-control' %>
+    </div>
+      <div class="field">
+      <%= f.label :isbn %><br>
+      <%= f.text_field :isbn, class: 'form-control' %>
+    </div><br>
+
+    <div class="actions">
+      <%= f.submit :class => "btn btn-success", :style => "color: #ffffff" %>
+    </div><br>
+  <% end %>
+</div>

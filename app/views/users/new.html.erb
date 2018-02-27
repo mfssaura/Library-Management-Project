@@ -1,0 +1,10 @@
+<% if @current_user.is_admin? %>
+
+    <h1>New User</h1>
+
+    <%= render 'form' %>
+<%else%>
+    <blockquote>
+      <p class="text-danger">You are not authorized to view this page!</p>
+    </blockquote>
+<%end%>

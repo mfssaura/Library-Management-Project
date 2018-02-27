@@ -1,0 +1,29 @@
+<%if (@user.id == @current_user.id) || @current_user.is_admin %>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+<p>
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @user.address %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @user.phone %>
+</p>
+<br/><br>
+<%= link_to 'Back', users_path, :class => "btn btn-warning", :style => "color: #ffffff" %>
+<%else%>
+<blockquote>
+  <p class="text-danger">You are not authorized to view this page!</p>
+</blockquote>
+<% end %>

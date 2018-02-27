@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th><strong>Title</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Author</strong></th>
+      <th><strong>Isbn</strong></th>
+      <th><strong>Status</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td><%= @book.title %></td>
+      <td><%= @book.description %></td>
+      <td><%= @book.author %></td>
+      <td><%= @book.isbn %></td>
+      <% if @book.is_borrowed %>
+      <td><span class="label label-danger">Checked out</span></td>
+      <%else%>
+      <td><span class="label label-success">Available</span></td>
+      <%end%>
+    </tr>
+  </tbody>
+</table>
+
+<%if @current_user.is_admin %>
+<%= link_to 'Edit', edit_book_path(@book), :class => "btn btn-danger", :style => "color: #ffffff" %> | 
+<%end%>
+<%= link_to 'Back', books_path, :class => "btn btn-warning", :style => "color: #ffffff" %>
