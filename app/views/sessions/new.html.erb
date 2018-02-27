@@ -1,0 +1,23 @@
+<% provide(:title, "Log In") %>
+<div class="main-title well">
+  <h3 style="text-align: center">Welcome to Library System, Please log in to proceed... </h3>
+</div><br><br>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3 well">
+    <%= form_for(:session, url: login_path) do |f| %>
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+      <br>
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+      <br>
+      <%= f.submit "Log In", class: 'btn btn-info active' %>
+    <% end %>
+    <br>
+    <div align="left">
+      <h5>New User? Sign Up to proceed</h5>
+      <%= link_to 'Sign Up', signup_path, class: 'btn btn-primary' %>
+    </div>
+  </div>
+</div>
