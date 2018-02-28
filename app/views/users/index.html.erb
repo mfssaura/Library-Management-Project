@@ -25,7 +25,7 @@
         <td><%= user.is_admin %></td>
         <td><%= link_to 'Show', user, class: "btn btn-success", :style => "color: #ffffff"%></td>
         <td><%= link_to 'Edit', edit_user_path(user), class: "btn btn-warning" , :style => "color: #ffffff"%></td>
-        <td><%=link_to 'View Checkout History', check_user_history_path(:data => {:user_id => user.id, :book_id => nil}), :class => "btn btn-success", :style => "color: #ffffff"%></td>
+        <td><%= link_to 'View Checkout History', check_user_history_path(:data => {:user_id => user.id, :book_id => nil}), :class => "btn btn-success", :style => "color: #ffffff"%></td>
         <%if user.id != @current_user.id && !user.super_admin %>
         <td><%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" , :style => "color: #ffffff"%></td>
 
