@@ -6,8 +6,8 @@
 <h1>Your checkout history</h1>
 <%else %>
 <h1><i style='color:#428bca'><%=User.find(@data.split("&")[1].split("=")[1].to_i).name%>'s</i> checkout history</h1>
-<%end%>
-<%else%>
+<% end %>
+<% else %>
 <h1>Check out history of <i style='color:#428bca'><%= Book.find(@data.split("&")[0].split("=")[1].to_i).title %></i></h1>
 <%end%>
 
@@ -17,9 +17,9 @@
     <th>Book</th>
     <th>Check out date</th>
     <th>Check in date</th>
-    <%if @data.split("&")[1].split("=")[1].nil? %>
+    <% if @data.split("&")[1].split("=")[1].nil? %>
     <th>Checked out by</th>
-    <%end%>
+    <% end %>
     <th colspan="3"></th>
   </tr>
 </thead>
@@ -29,15 +29,15 @@
   <% @book = Book.find(book_history.book_id) %>
   <% @user = User.find(book_history.user_id) %>
   <% #History of a user %>
-  <%  if @data.split("&")[0].split("=")[1].nil? %>
-  <% if book_history.user_id.to_s == @data.split("&")[1].split("=")[1]%>
+  <% if @data.split("&")[0].split("=")[1].nil? %>
+  <% if book_history.user_id.to_s == @data.split("&")[1].split("=")[1] %>
   <tr>
     <td><%= @book.title %></td>
     <td><%= book_history.check_out_date.strftime("%b/%d/%Y") %></td>
     <% if !book_history.check_in_date.nil? %>
     <td><%= book_history.check_in_date.strftime("%b/%d/%Y") %></td>
     <% else %>
-    <td><%=book_history.check_in_date %></td>
+    <td><%= book_history.check_in_date %></td>
     <% end %>
     <% end %>
     <% end %> <%#End of history of a book%>
@@ -47,13 +47,13 @@
     <tr>
       <td><%= @book.title %></td>
       <td><%= book_history.check_out_date.strftime("%b/%d/%Y") %></td>
-      <%if !book_history.check_in_date.nil?%>
-      <td><%=book_history.check_in_date.strftime("%b/%d/%Y")%></td>
-      <%else%>
+      <% if !book_history.check_in_date.nil?%>
+      <td><%= book_history.check_in_date.strftime("%b/%d/%Y") %></td>
+      <% else %>
       <td><%= book_history.check_out_date %></td>
-      <%end%>
+      <% end %>
       <td><%= @user.name %>&nbsp(&nbsp<%= @user.email %>&nbsp)</td>
-      <%end%>
+      <% end %>
       <% end %>
       <%#End of history of a book%>
       <% end %>
@@ -66,4 +66,4 @@
   </blockquote>
   <% end %>
 </br>
-<%= link_to 'Back', :back, :class => "btn btn-warning", :style => "color: #ffffff" %>
+<%= link_to 'Back', books_path , :class => "btn btn-warning", :style => "color: #ffffff" %>

@@ -36,7 +36,8 @@ class BookHistoriesController < ApplicationController
   def destroy
     @book_history.destroy
     redirect_to book_histories_path, notice: 'Book history deleted!'
-  end 
+  end
+
 
   private
 

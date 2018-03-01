@@ -126,6 +126,15 @@ class BooksController < ApplicationController
     else
       render :show
     end
+  end
+
+  def calc_fine
+    @book = Book.find(params[:id])
+    @fine = 0
+    no_of_days = (@book.check_in_date.strftime("%Y-%m-%d") - @book.check_out_date.strftime("%Y-%m-%d"))
+    if (@book.is_requested and no_of_days > 15.days) 
+      @fine += (no_of_days)*0.05
+    end 
   end 
 
   private

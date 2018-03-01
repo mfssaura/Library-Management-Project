@@ -16,8 +16,13 @@ Rails.application.routes.draw do
   get 'books/:id/cancel_request' => 'books#cancel_request', :as => :cancel_request_book
 
   resources :searches
-  resources :books 
+  resources :books do 
+    resources :posts
+  end
   resources :users 
+
+  
+  resources :comments, only: [:new, :create, :show]
 
   match ':controller(/:action(/:id))', :via => :get
 end

@@ -28,5 +28,16 @@
 
 <%if @current_user.is_admin %>
 <%= link_to 'Edit', edit_book_path(@book), :class => "btn btn-danger", :style => "color: #ffffff" %> | 
-<%end%>
-<%= link_to 'Back', books_path, :class => "btn btn-warning", :style => "color: #ffffff" %>
+<% end %>
+<%= link_to 'Back', books_path, :class => "btn btn-warning", :style => "position: relative; left: 48%; color: #ffffff" %><br><br>
+<%= render 'posts/form' %><br>
+
+<!-- Show all the reviews and comments of the post -->
+<% @book.posts.each do |post| %>
+    <div class="form-field">
+      Title: <%= post.title %><br>
+    </div>
+    <div class="form-field">
+      Content: <%= post.description %><br>
+    </div><br><hr>
+  <% end %>
